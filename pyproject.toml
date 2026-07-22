@@ -1,0 +1,22 @@
+[project]
+name = "django-rh"
+version = "0.1.0"
+description = "Moteur RH professionnel pour Django - Écosystème ERP francophone"
+authors = [{name = "bahdev223"}]
+license = {text = "MIT"}
+readme = "README.md"
+homepage = "https://github.com/bahdev223/django-rh"
+repository = "https://github.com/bahdev223/django-rh"
+keywords = ["django", "rh", "hr", "employees", "erp", "francophone"]
+requires-python = ">=3.10"
+dependencies = [
+    "django>=4.0",
+    "djangorestframework>=3.15",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.packages]
+include = "django_rh"
