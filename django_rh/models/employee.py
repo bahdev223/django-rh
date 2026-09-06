@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -29,21 +30,35 @@ class Employee(models.Model):
     email = models.EmailField(blank=True, verbose_name="Email")
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.RECRUITED, verbose_name="Statut")
     department = models.ForeignKey(
-        "django_rh.Department", null=True, blank=True, on_delete=models.SET_NULL,
+        "rh.Department", null=True, blank=True, on_delete=models.SET_NULL,
         verbose_name="Département",
     )
     position = models.ForeignKey(
-        "django_rh.Position", null=True, blank=True, on_delete=models.SET_NULL,
+        "rh.Position", null=True, blank=True, on_delete=models.SET_NULL,
         verbose_name="Poste",
     )
     contract_type = models.CharField(max_length=20, choices=ContractType.choices, default=ContractType.CDI, verbose_name="Type de contrat")
     hire_date = models.DateField(null=True, blank=True, verbose_name="Date d'embauche")
     termination_date = models.DateField(null=True, blank=True, verbose_name="Date de fin")
+    salaire_mensuel = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        null=True,
+        blank=True,
+        verbose_name="Salaire mensuel",
+    )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # Preparation multi-entreprises. Vide tant que l'application ne sert
+    # qu'une entreprise ; le projet hote y place l'identifiant de son
+    # organisation le jour ou il en gere plusieurs. Un CharField plutot
+    # qu'une cle etrangere : le paquet reste ainsi utilisable sans
+    # connaitre le modele d'organisation de l'hote.
+    entreprise_id = models.CharField(max_length=255, blank=True, default="", db_index=True)
 
     class Meta:
         verbose_name = "Employé"
