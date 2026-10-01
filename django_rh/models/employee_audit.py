@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -11,7 +12,7 @@ class EmployeeAuditLog(models.Model):
         TRANSFER = "transfer", "Transfert"
         TERMINATE = "terminate", "Fin de contrat"
 
-    employee = models.ForeignKey("django_rh.Employee", on_delete=models.CASCADE, related_name="audit_logs")
+    employee = models.ForeignKey("rh.Employee", on_delete=models.CASCADE, related_name="audit_logs")
     action = models.CharField(max_length=50, choices=Action.choices)
     details = models.JSONField(null=True, blank=True)
     performed_by = models.ForeignKey(

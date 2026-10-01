@@ -7,7 +7,7 @@ class Position(models.Model):
     title = models.CharField(max_length=255, verbose_name="Intitulé")
     description = models.TextField(blank=True, verbose_name="Description")
     department = models.ForeignKey(
-        "django_rh.Department", null=True, blank=True, on_delete=models.SET_NULL,
+        "rh.Department", null=True, blank=True, on_delete=models.SET_NULL,
         verbose_name="Département",
     )
 

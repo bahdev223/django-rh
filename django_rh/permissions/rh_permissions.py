@@ -3,34 +3,34 @@ from rest_framework.permissions import BasePermission
 
 class RHAccessPermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_view")
+        return request.user.has_perm("rh.rh_view")
 
 
 class RHCreatePermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_create")
+        return request.user.has_perm("rh.rh_create")
 
 
 class RHEditPermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_edit")
+        return request.user.has_perm("rh.rh_edit")
 
 
 class RHDeletePermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_delete")
+        return request.user.has_perm("rh.rh_delete")
 
 
 class RHPromotePermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_promote")
+        return request.user.has_perm("rh.rh_promote")
 
 
 class RHTransferPermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_transfer")
+        return request.user.has_perm("rh.rh_transfer")
 
 
 class RHTerminatePermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.has_perm("django_rh.rh_terminate")
+        return request.user.has_perm("rh.rh_terminate")
